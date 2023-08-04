@@ -1,1 +1,1 @@
-# Scire-Solver:
+# SciRE-Solver:
