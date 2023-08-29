@@ -1,6 +1,6 @@
 # SciRE-Solver: Efficient Sampling of Diffusion Probabilistic Models by Score-integrand Solver with Recursive Derivative Estimation
 
-Created by [Shigui Li](https://ShiguiLi.github.io/)\*, [Wei Chen], [Delu Zeng]
+Created by [Shigui Li](https://ShiguiLi.github.io/)\*, [Wei Chen](https://scholar.google.com/citations?hl=en&user=n5VpiAMAAAAJ), [Delu Zeng](https://scholar.google.com/citations?user=08RCdoIAAAAJ)
 
 This code is a demo of the PyTorch implementation for SciRE-Solver.
 
