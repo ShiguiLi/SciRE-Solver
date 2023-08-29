@@ -313,7 +313,7 @@ class SciRE_Solver:
         else:
             raise ValueError("'order' must be '1' or '2' or '3'.")
         if skip_type == 'logSNR':
-            # To reproduce the results in SciRE-Solver paper
+            # To reproduce the results in DPM-Solver paper
             timesteps_outer = self.get_time_steps(skip_type, t_T, t_0, K, device)
         else:
             timesteps_outer = self.get_time_steps(skip_type, t_T, t_0, steps, device)[
