@@ -1,0 +1,52 @@
+data:
+    dataset: "IMAGENET64"
+    image_size: 64
+    channels: 3
+    logit_transform: false
+    uniform_dequantization: false
+    gaussian_dequantization: false
+    random_flip: true
+    rescaled: true
+    num_workers: 4
+    num_classes: 1000
+
+model:
+    model_type: "improved_ddpm"
+    is_upsampling: false
+    in_channels: 3
+    model_channels: 128
+    out_channels: 6
+    num_res_blocks: 3
+    attention_resolutions: [4, 8]
+    dropout: 0.0
+    channel_mult: [1, 2, 3, 4]
+    conv_resample: true
+    dims: 2
+    use_checkpoint: false
+    num_heads: 4
+    num_heads_upsample: -1
+    use_scale_shift_norm: true
+    var_type: fixedlarge
+    use_fp16: false
+    ema: false
+    # ckpt_dir: "~/ddpm_ckpt/imagenet64/imagenet64_uncond_100M_1500K.pt"
+    ckpt_dir: "/home/ddpm_and_guided-diffusion/ddpm_ckpt/imagenet64/imagenet64_uncond_100M_1500K.pt"
+
+diffusion:
+    beta_schedule: cosine
+    beta_start: null
+    beta_end: null
+    num_diffusion_timesteps: 4000
+
+sampling:
+    total_N: 4000
+    schedule: "discrete"
+    # batch_size: 500
+    batch_size: 125
+    last_only: True
+    fid_stats_dir: "fid_stats/fid_stats_imagenet64_train.npz"
+    fid_total_samples: 50000
+    # fid_batch_size: 1000
+    fid_batch_size: 500
+    cond_class: false
+    classifier_scale: 0.0
