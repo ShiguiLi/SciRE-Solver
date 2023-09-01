@@ -87,9 +87,6 @@ def parse_args_and_config():
     parser.add_argument(
         "--timesteps", type=int, default=1000, help="number of steps involved"
     )
-    # parser.add_argument(
-    #     "--dpm_solver_order", type=int, default=3, help="order of dpm-solver"
-    # )
     parser.add_argument(
         "--scire_solver_order", type=int, default=3, help="order of scire-solver"
     )
@@ -105,41 +102,23 @@ def parse_args_and_config():
     parser.add_argument(
         "--fixed_class", type=int, default=None, help="fixed class label for conditional sampling"
     )
-    # parser.add_argument(
-    #     "--dpm_solver_atol", type=float, default=0.0078, help="atol for adaptive step size algorithm"
-    # )
-    # parser.add_argument(
-    #     "--dpm_solver_rtol", type=float, default=0.05, help="rtol for adaptive step size algorithm"
-    # )
     parser.add_argument(
         "--scire_solver_atol", type=float, default=0.0078, help="atol for adaptive step size algorithm"
     )
     parser.add_argument(
         "--scire_solver_rtol", type=float, default=0.05, help="rtol for adaptive step size algorithm"
     )
-    # parser.add_argument(
-    #     "--dpm_solver_method",
-    #     type=str,
-    #     default="singlestep",
-    #     help="method of dpm_solver ('adaptive' or 'singlestep' or 'multistep' or 'singlestep_fixed'",
-    # )
     parser.add_argument(
         "--scire_solver_method",
         type=str,
         default="singlestep",
         help="method of scire_solver ('adaptive' or 'singlestep' or 'multistep' or 'singlestep_fixed'",
     )
-    # parser.add_argument(
-    #     "--dpm_solver_type",
-    #     type=str,
-    #     default="dpm_solver",
-    #     help="type of dpm_solver ('dpm_solver' or 'taylor'",
-    # )
     parser.add_argument(
         "--scire_solver_type",
         type=str,
         default="scire_solver",
-        help="type of scire_solver ('scire_solver' or 'dpm_solver' or 'taylor'",
+        help="type of scire_solver ('scire_solver'",
     )
     parser.add_argument("--scale", type=float, default=None)
     parser.add_argument("--denoise", action="store_true", default=False)
