@@ -78,7 +78,6 @@ class NoiseScheduleVP:
         Compute lambda_t = log(alpha_t) - log(sigma_t) of a given continuous-time label t in [0, T].
         """
         log_mean_coeff = self.marginal_log_mean_coeff(t)
-        # print('log_mean_coeff=',log_mean_coeff)
         log_std = 0.5 * torch.log(1. - torch.exp(2. * log_mean_coeff))
         return log_mean_coeff - log_std
 
@@ -137,8 +136,6 @@ def model_wrapper(
         For discrete-time DPMs, we convert `t_continuous` in [1 / N, 1] to `t_input` in [0, 1000 * (N - 1) / N].
         For continuous-time DPMs, we just use `t_continuous`.
         """
-        # print('t_continuous=',t_continuous)
-        # print('(t_continuous - 1. / noise_schedule.total_N) * 1000=',(t_continuous - 1. / noise_schedule.total_N) * 1000)
         if noise_schedule.schedule == 'discrete':
             return (t_continuous - 1. / noise_schedule.total_N) * 1000.
         elif noise_schedule.schedule == 'linear':
@@ -216,7 +213,7 @@ class SciRE_Solver:
 
         self.model = lambda x, t: model_fn(x, t.expand((x.shape[0])))
         self.noise_schedule = noise_schedule
-        assert algorithm_type in ["scire", "dpm", "rde"]
+        assert algorithm_type in ["scire", "ei"]
         self.algorithm_type = algorithm_type
         if correcting_x0_fn == "dynamic_thresholding":
             self.correcting_x0_fn = self.dynamic_thresholding_fn
@@ -348,13 +345,13 @@ class SciRE_Solver:
                                               solver_type='scire'):
         #Here, we use phi_1(3) for RDE-based solver,
         # one can choose phi_1(m)=torch.exp(torch.tensor(1)) / torch.expm1(torch.tensor(1)) as described in our paper.
-        if solver_type not in ['scire', 'ei']:
-            raise ValueError("'solver_type' must be 'scire' or 'ei', got {}".format(solver_type))
+        if self.algorithm_type not in ['scire', 'ei']:
+            raise ValueError("'algorithm_type' must be 'scire' or 'ei', got {}".format(algorithm_type))
         if r1 is None:
             r1 = 0.5
         ns = self.noise_schedule
         dims = len(x.shape) - 1
-        if solver_type == "scire":
+        if self.algorithm_type == "scire":
             NSR_s, NSR_t = ns.marginal_NSR(s), ns.marginal_NSR(t)
             h = NSR_t - NSR_s
             NSR_s1 = NSR_s + r1 * h
@@ -369,22 +366,22 @@ class SciRE_Solver:
                     + (NSR_s1 - NSR_s) * expand_dims(alpha_s1, dims) * model_s
             )
             model_s1 = self.model_fn(x_s1, s1)
-            if self.algorithm_type == 'rde':#Recursive difference estimation
+            if solver_type == 'rde':#Recursive difference estimation
                 x_t = (
                         (torch.exp(log_alpha_t - log_alpha_s)) * x
                         + (NSR_t - NSR_s) * expand_dims(alpha_t, dims) * model_s
                         + 3 / 4 * (NSR_t - NSR_s) ** 2 / (NSR_s1 - NSR_s) * expand_dims(alpha_t, dims) * (model_s1 - model_s)
                 )
-            elif self.algorithm_type == 'fde':#Finite difference estimation
+            elif solver_type == 'fde':#Finite difference estimation
                 x_t = (
                         (torch.exp(log_alpha_t - log_alpha_s)) * x
                         + (NSR_t - NSR_s) * expand_dims(alpha_t, dims) * model_s
                         +0.5*(NSR_t-NSR_s)**2/(NSR_s1-NSR_s)*expand_dims(alpha_t, dims)*(model_s1 - model_s) #FDE-based
                     )
             else:
-                raise ValueError("'algorithm_type' must be 'rde' or 'fde', got {}".format(algorithm_type))
+                raise ValueError("'solver_type' must be 'rde' or 'fde', got {}".format(solver_type))
 
-        elif solver_type == "ei":
+        elif self.algorithm_type == "ei":
             lambda_s, lambda_t = ns.marginal_lambda(s), ns.marginal_lambda(t)
             h = lambda_t - lambda_s
             lambda_s1 = lambda_s + r1 * h
@@ -403,22 +400,22 @@ class SciRE_Solver:
                     - (sigma_s1 * phi_11) * model_s
             )
             model_s1 = self.model_fn(x_s1, s1)
-            if self.algorithm_type == 'rde': #EIRE: An Exponential Integrator with RDE proposed by our paper.
+            if solver_type == 'rde': #EIRE: An Exponential Integrator with RDE proposed by our paper.
                 x_t = (
                         torch.exp(log_alpha_t - log_alpha_s) * x
                         - (sigma_t * phi_1) * model_s
                         - (3 / h) * (sigma_t * (phi_1 - h)) * (model_s1 - model_s)
                 )
-            elif self.algorithm_type == 'dpm':# DPM-Solver, our baseline
+            elif solver_type == 'dpm':# DPM-Solver-2
                 x_t = (
                         torch.exp(log_alpha_t - log_alpha_s) * x
                         - (sigma_t * phi_1) * model_s
                         - (0.5 / r1) * (sigma_t * phi_1) * (model_s1 - model_s)
                 )
             else:
-                raise ValueError("'algorithm_type' must be 'rde' or 'dpm', got {}".format(algorithm_type))
+                raise ValueError("'solver_type' must be 'rde' or 'dpm', got {}".format(solver_type))
         else:
-            raise ValueError("'solver_type' must be 'scire' or 'ei', got {}".format(solver_type))
+            raise ValueError("'algorithm_type' must be 'scire' or 'ei', got {}".format(algorithm_type))
         if return_intermediate:
             return x_t, {'model_s': model_s, 'model_s1': model_s1}
         else:
@@ -426,15 +423,15 @@ class SciRE_Solver:
 
     def singlestep_scire_solver_third_update(self, x, s, t, r1=1. / 3., r2=2. / 3., model_s=None, model_s1=None,
                                              return_intermediate=False, solver_type='scire'):
-        if solver_type not in ['scire', 'ei']:
-            raise ValueError("'solver_type' must be either 'scire' or 'ei', got {}".format(solver_type))
+        if self.algorithm_type not in ['scire', 'ei']:
+            raise ValueError("'algorithm_type' must be either 'scire' or 'ei', got {}".format(algorithm_type))
         if r1 is None:
             r1 = 1. / 3.
         if r2 is None:
             r2 = 2. / 3.
         ns = self.noise_schedule
         dims = len(x.shape) - 1
-        if self.solver_type == "scire":
+        if self.algorithm_type == "scire":#SciRE-Solver-3
             NSR_s, NSR_t = ns.marginal_NSR(s), ns.marginal_NSR(t)
             h = NSR_t - NSR_s
             NSR_s1 = NSR_s + r1 * h
@@ -456,7 +453,7 @@ class SciRE_Solver:
                         + ((NSR_s1 - NSR_s) * alpha_s1)[(...,) + (None,) * dims] * model_s
                 )
                 model_s1 = self.model_fn(x_s1, s1)
-            if algorithm_type == 'rde':
+            if solver_type == 'rde':
                 x_s2 = (
                     torch.exp(log_alpha_s2 - log_alpha_s)[(...,) + (None,) * dims] * x
                     + ((NSR_s2 - NSR_s) * alpha_s2)[(...,) + (None,) * dims] * model_s
@@ -469,8 +466,8 @@ class SciRE_Solver:
                     + (3 / 4 / r2 * (NSR_t - NSR_s) * alpha_t)[(...,) + (None,) * dims] * (model_s2 - model_s)
                 )
             else:
-                raise ValueError("'algorithm_type' must be 'rde', got {}".format(algorithm_type))
-        elif self.solver_type == "ei":
+                raise ValueError("'solver_type' must be 'rde', got {}".format(solver_type))
+        elif self.algorithm_type == "ei":#DPM-Solver-3
             lambda_s, lambda_t = ns.marginal_lambda(s), ns.marginal_lambda(t)
             h = lambda_t - lambda_s
             lambda_s1 = lambda_s + r1 * h
@@ -497,7 +494,7 @@ class SciRE_Solver:
                         - (sigma_s1 * phi_11) * model_s
                 )
                 model_s1 = self.model_fn(x_s1, s1)
-            if algorithm_type == 'dpm':
+            if solver_type == 'dpm':
                 x_s2 = (
                     (torch.exp(log_alpha_s2 - log_alpha_s)) * x
                     - (sigma_s2 * phi_12) * model_s
@@ -510,9 +507,9 @@ class SciRE_Solver:
                         - (1. / r2) * (sigma_t * phi_2) * (model_s2 - model_s)
                 )
             else:
-                raise ValueError("'algorithm_type' must be 'dpm', got {}".format(algorithm_type))
+                raise ValueError("'solver_type' must be 'dpm', got {}".format(solver_type))
         else:
-            raise ValueError("'solver_type' must be 'scire' or 'ei', got {}".format(solver_type))
+            raise ValueError("'algorithm_type' must be 'scire' or 'ei', got {}".format(algorithm_type))
         if return_intermediate:
             return x_t, {'model_s': model_s, 'model_s1': model_s1, 'model_s2': model_s2}
         else:
@@ -644,12 +641,11 @@ class SciRE_Solver:
                                                                                                   skip_type=skip_type,
                                                                                                   t_T=t_T, t_0=t_0,
                                                                                                   device=device)
-                    # print('timesteps_outer=',timesteps_outer,'t_0=',t_0,'t_T=',t_T)
+
                 elif method == 'singlestep_fixed':
                     K = steps // order
                     orders = [order, ] * K
                     timesteps_outer = self.get_time_steps(skip_type=skip_type, t_T=t_T, t_0=t_0, N=K, device=device)
-                    # print('timesteps_outer=',timesteps_outer)
                 for step, order in enumerate(orders):
                     s, t = timesteps_outer[step], timesteps_outer[step + 1]
                     x = self.singlestep_scire_solver_update(x, s, t, order, solver_type=solver_type)
