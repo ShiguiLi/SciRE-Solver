@@ -2,9 +2,9 @@
 
 Created by [Shigui Li](https://ShiguiLi.github.io/)\*, [Wei Chen](https://scholar.google.com/citations?hl=en&user=n5VpiAMAAAAJ), [Delu Zeng](https://scholar.google.com/citations?user=08RCdoIAAAAJ)
 
-This code is a demo of the PyTorch implementation for SciRE-Solver.
+This code is an official demo of PyTorch implementation of SciRE-Solver.
 
-# TODO
+# TODO: 
 
 # Acknowledgement
 
@@ -12,7 +12,7 @@ Our code is based on [ScoreSDE](https://github.com/yang-song/score_sde) and [DPM
 
 # Citation
 
-If you find our work useful in your research, please consider citing:
+If you find our work beneficial to your research, please consider citing:
 
 ```
 @article{li2023scire,
