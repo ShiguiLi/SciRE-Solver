@@ -64,19 +64,19 @@ def parse_args_and_config():
     parser.add_argument(
         "--ni",
         action="store_true",
-        help="No interaction. Suitable for Slurm Job launcher",
+        help="No interaction. Suitable for Slurm Job launcher"
     )
     parser.add_argument(
         "--sample_type",
         type=str,
         default="generalized",
-        help="sampling approach ('generalized'(DDIM) or 'ddpm_noisy'(DDPM) or 'dpmsolver' or 'dpmsolver++')",
+        help="sampling approach ('generalized'(DDIM) or 'ddpm_noisy'(DDPM) or 'scire' or 'ei')"
     )
     parser.add_argument(
         "--skip_type",
         type=str,
         default="time_uniform",
-        help="skip according to ('uniform' or 'quadratic' for DDIM/DDPM; 'logSNR' or 'time_uniform' or 'time_quadratic' for DPM-Solver)",
+        help="skip according to ('uniform' or 'quadratic' for DDIM/DDPM; 'NSR' or 'logSNR' or 'time_uniform' or 'time_quadratic' for scire-solver/dpm-solver )"
     )
     parser.add_argument(
         "--base_samples",
@@ -112,13 +112,13 @@ def parse_args_and_config():
         "--scire_solver_method",
         type=str,
         default="singlestep",
-        help="method of scire_solver ('adaptive' or 'singlestep' or 'multistep' or 'singlestep_fixed'",
+        help="method of scire_solver ('adaptive' or 'singlestep' or 'multistep' or 'singlestep_fixed')"
     )
     parser.add_argument(
         "--scire_solver_type",
         type=str,
         default="scire_solver",
-        help="type of scire_solver ('scire_solver'",
+        help="type of scire_solver ('rde' or 'fde' or 'dpm')"
     )
     parser.add_argument("--scale", type=float, default=None)
     parser.add_argument("--denoise", action="store_true", default=False)
