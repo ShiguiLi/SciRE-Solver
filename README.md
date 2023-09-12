@@ -1,4 +1,4 @@
-# SciRE-Solver: Efficient Sampling of Diffusion Probabilistic Models by Score-integrand Solver with Recursive Derivative Estimation
+# SciRE-Solver: Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference
 
 Created by [Shigui Li](https://ShiguiLi.github.io/)\*, [Wei Chen](https://scholar.google.com/citations?hl=en&user=n5VpiAMAAAAJ), [Delu Zeng](https://scholar.google.com/citations?user=08RCdoIAAAAJ)
 
@@ -17,7 +17,7 @@ If you find our work beneficial to your research, please consider citing:
 
 ```
 @article{li2023scire,
-  title={SciRE-Solver: Efficient Sampling of Diffusion Probabilistic Models by Score-integrand Solver with Recursive Derivative Estimation},
+  title={SciRE-Solver: Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference},
   author={Li, Shigui and Chen, Wei and Zeng, Delu},
   journal={arXiv preprint arXiv:2308.07896},
   year={2023}
