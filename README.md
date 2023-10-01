@@ -1,4 +1,4 @@
-# [SciRE-Solver: Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference](https://doi.org/10.48550/arXiv.2308.07896)
+# SciRE-Solver: Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference
 
 
 
@@ -6,6 +6,7 @@ Created by [Shigui Li](https://ShiguiLi.github.io/)\*, [Wei Chen](https://schola
 
 This code is an official demo of PyTorch implementation of SciRE-Solver.
 
+[ArXiv](https://doi.org/10.48550/arXiv.2308.07896)
 
 # TODO: Stable-Diffusion
 
