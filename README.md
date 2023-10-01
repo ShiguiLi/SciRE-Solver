@@ -1,5 +1,5 @@
-# SciRE-Solver: Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference 
-(https://doi.org/10.48550/arXiv.2308.07896)
+# [SciRE-Solver: Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference](https://doi.org/10.48550/arXiv.2308.07896)
+
 
 
 Created by [Shigui Li](https://ShiguiLi.github.io/)\*, [Wei Chen](https://scholar.google.com/citations?hl=en&user=n5VpiAMAAAAJ), [Delu Zeng](https://scholar.google.com/citations?user=08RCdoIAAAAJ)
