@@ -4,7 +4,7 @@ Created by [Shigui Li](https://ShiguiLi.github.io/)\*, [Wei Chen](https://schola
 
 This code is an official demo of PyTorch implementation of SciRE-Solver.
 
-# TODO: 
+# TODO: Stable-Diffusion, EDM
 
 
 # Acknowledgement
