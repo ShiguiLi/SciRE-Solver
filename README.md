@@ -4,7 +4,12 @@ Created by [Shigui Li](https://ShiguiLi.github.io/)\*, [Wei Chen](https://schola
 
 This code is an official demo of PyTorch implementation of SciRE-Solver.
 
-# TODO: Stable-Diffusion, EDM
+
+# TODO: Stable-Diffusion
+
+
+# EDM
+SciRE-Solver-2 (single-fixed) with cpkt (edm-cifar10-32x32-cond-vp.pkl) attian $2.29$ FID with $12$ NFE, $2.16$ fid with $14$ NFE, when $\phi_1(m)=\phi_1(3)$. 
 
 
 # Acknowledgement
