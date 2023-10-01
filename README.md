@@ -8,7 +8,7 @@ This code is an official demo of PyTorch implementation of SciRE-Solver.
 # TODO: Stable-Diffusion
 
 
-# EDM ($1.76$ FID with $100$ NFE)
+# EDM (1.76 FID with 100 NFE)
 - SciRE-Solver-2 (single-fixed) with cpkt ([edm-cifar10-32x32-cond-vp.pkl](https://nvlabs-fi-cdn.nvidia.com/edm/pretrained/edm-cifar10-32x32-cond-vp.pkl)) attian $2.29$ FID with $12$ NFE, $2.16$ FID with $14$ NFE, $1.94$ FID with $20$ NFE, $1.76$ FID with $100$ NFE, when $\phi_1(m)=\phi_1(3)$. 
 
 
