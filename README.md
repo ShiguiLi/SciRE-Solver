@@ -23,7 +23,7 @@ Our code is based on [ScoreSDE](https://github.com/yang-song/score_sde) and [DPM
 
 # Citation
 
-If you find our work beneficial to your, please consider citing:
+If you find our work beneficial to you, please consider citing:
 
 ```
 @article{li2023scireAD,
