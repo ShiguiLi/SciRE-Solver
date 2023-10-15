@@ -10,12 +10,13 @@ This code is an official demo of PyTorch implementation of SciRE-Solver.
 
 
 
+# [Stable-Diffusion](https://github.com/Stability-AI/StableDiffusion) 
+The code is now available in the ['sd_scire'](sd_scire/stable-diffusion/ldm/models/diffusion/scire_solver) folder, and we welcome everyone to use the scire-solver on stable-diffusion. Next, we will integrate the code into the stable-diffusion repository.
 
 # EDM (1.76 FID on CIFAR-10)
-- SciRE-Solver-2 (singlestep_fixed) with cpkt ([edm-cifar10-32x32-cond-vp.pkl](https://nvlabs-fi-cdn.nvidia.com/edm/pretrained/edm-cifar10-32x32-cond-vp.pkl)) attian $2.29$ FID with $12$ NFE, $2.16$ FID with $14$ NFE, $1.94$ FID with $20$ NFE, $1.79$ FID with $50$ NFE, $1.76$ FID with $100$ NFE, when $\phi_1(m)=\phi_1(3)$. 
+- SciRE-Solver-2 (singlestep_fixed) with cpkt ([edm-cifar10-32x32-cond-vp.pkl](https://nvlabs-fi-cdn.nvidia.com/edm/pretrained/edm-cifar10-32x32-cond-vp.pkl)) attian $2.29$ FID with $12$ NFE, $2.16$ FID with $14$ NFE, $1.94$ FID with $20$ NFE, $1.79$ FID with $50$ NFE, $1.76$ FID with $100$ NFE, when $\phi_1(m)=\phi_1(3)$.
 
 # TODO:
-We will make the code of the SciRE-Solver used for [Stable-Diffusion](https://github.com/Stability-AI/StableDiffusion) publicly available.
 
 # Acknowledgement
 
