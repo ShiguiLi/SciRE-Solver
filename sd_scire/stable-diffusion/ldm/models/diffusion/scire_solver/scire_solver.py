@@ -415,7 +415,7 @@ class SciRE_Solver:
         if self.correcting_xt_fn is not None:
             assert method in ['multistep', 'singlestep', 'singlestep_fixed'], "Cannot use adaptive solver when correcting_xt_fn is not None"
         device = x.device
-        # Simplify single iteration of SciRE-Solver
+        # Simplify each iteration of SciRE-Solver
         if self.algorithm_type == "scire_v1":
             x = torch.exp(-self.noise_schedule.marginal_log_mean_coeff(torch.tensor(t_T).to(device))) * x
         #This step for scire_v2 can be omitted as self.noise_schedule.marginal_std(torch.tensor(t_T).to(device)) approximates to 1.
@@ -455,7 +455,6 @@ class SciRE_Solver:
                     if return_intermediate:
                         intermediates.append(x)
                     t_prev_list.append(t)
-                    # model_prev_list.append(self.model_fn(x, t))
                     if self.algorithm_type == "scire_v1":
                         model_prev_list.append(self.model_fn(self.noise_schedule.marginal_alpha(t)*x, t))
                     elif self.algorithm_type == "scire_v2":
@@ -485,19 +484,19 @@ class SciRE_Solver:
                     t_prev_list[-1] = t
                     # We do not need to evaluate the final model value.
                     if step < steps:
-                        # model_prev_list[-1] = self.model_fn(x, t)
                         if self.algorithm_type == "scire_v1":
                             model_prev_list[-1] = self.model_fn(self.noise_schedule.marginal_alpha(t)*x, t)
                         elif self.algorithm_type == "scire_v2":
                             model_prev_list[-1] = self.model_fn(self.noise_schedule.marginal_std(t)*x, t)
 
             elif method in ['singlestep', 'singlestep_fixed']:
+                K = steps // order
                 # compute phi_1(m) as described in paper
                 phi = self.noise_schedule.series_phi(1, steps//order)
+                
                 if method == 'singlestep':
                     timesteps_outer, orders = self.get_orders_and_timesteps_for_singlestep_solver(steps=steps, order=order, skip_type=skip_type, t_T=t_T, t_0=t_0, device=device)
                 elif method == 'singlestep_fixed':
-                    K = steps // order
                     orders = [order,] * K
                     timesteps_outer = self.get_time_steps(skip_type=skip_type, t_T=t_T, t_0=t_0, N=K, device=device)
                 for step, order in enumerate(orders):
