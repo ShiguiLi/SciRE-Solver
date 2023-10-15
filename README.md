@@ -21,7 +21,7 @@ Here we provide two versions of the 'scire-solver', and three different types of
   - "scire_v1-2m"
   - "scire_v1-3m"
   - "scire_v2-2m"
-  - "scire_v2-3m" (recommend experientially with 6 sampling steps)
+  - "scire_v2-3m" (at 6 steps, it is empirically better than other "m" options.)
 - When the number of sampling steps '>= 26', we recommend trying all available options.
 
 # EDM (1.76 FID on CIFAR-10)
