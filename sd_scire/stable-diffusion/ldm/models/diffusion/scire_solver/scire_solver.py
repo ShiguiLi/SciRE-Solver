@@ -434,7 +434,6 @@ class SciRE_Solver:
                 step = 0
                 t = timesteps[step]
                 t_prev_list = [t]
-                # model_prev_list = [self.model_fn(x, t)]
                 if self.algorithm_type == "scire_v1":
                     model_prev_list = [self.model_fn(self.noise_schedule.marginal_alpha(t)*x, t)]
                 elif self.algorithm_type == "scire_v2":
