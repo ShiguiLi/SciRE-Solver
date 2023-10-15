@@ -434,7 +434,6 @@ class SciRE_Solver:
                 step = 0
                 t = timesteps[step]
                 t_prev_list = [t]
-                # model_prev_list = [self.model_fn(x, t)]
                 if self.algorithm_type == "scire_v1":
                     model_prev_list = [self.model_fn(self.noise_schedule.marginal_alpha(t)*x, t)]
                 elif self.algorithm_type == "scire_v2":
@@ -455,7 +454,6 @@ class SciRE_Solver:
                     if return_intermediate:
                         intermediates.append(x)
                     t_prev_list.append(t)
-                    # model_prev_list.append(self.model_fn(x, t))
                     if self.algorithm_type == "scire_v1":
                         model_prev_list.append(self.model_fn(self.noise_schedule.marginal_alpha(t)*x, t))
                     elif self.algorithm_type == "scire_v2":
@@ -494,6 +492,7 @@ class SciRE_Solver:
                 K = steps // order
                 # compute phi_1(m) as described in paper
                 phi = self.noise_schedule.series_phi(1, steps//order)
+                
                 if method == 'singlestep':
                     timesteps_outer, orders = self.get_orders_and_timesteps_for_singlestep_solver(steps=steps, order=order, skip_type=skip_type, t_T=t_T, t_0=t_0, device=device)
                 elif method == 'singlestep_fixed':
