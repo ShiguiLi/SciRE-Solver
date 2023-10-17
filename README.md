@@ -15,16 +15,9 @@ This code is an official demo of PyTorch implementation of SciRE-Solver.
   <img src="./assets/Recursive_Difference.pdf" width="100%">
 </p>
 
-
-# SciRE-Solver has achieved a higher 'FID' than the pre-trained models previously achieved, all while accelerating.
-
 SciRE-Solver encompasses two algorithm types, 'scire_v1' and 'scire_v2', which come with three available iteration modes: "multistep", "singlestep"(agile), and "singlestep_fixed". 
 
-
-
-
-# SciRE-Solver with discrete diffusiom model (3.147 FID with 78 NFE on CIFAR-10)
-
+**SciRE-Solver has achieved a higher 'FID' than the pre-trained models previously achieved, all while accelerating.**
 
 
 
@@ -79,3 +72,4 @@ If you find our work beneficial to you, please consider citing:
   year={2023}
 }
 ```
+
