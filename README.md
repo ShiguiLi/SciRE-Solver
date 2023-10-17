@@ -15,9 +15,11 @@ This code is an official demo of PyTorch implementation of SciRE-Solver.
 </p>
 
 
-SciRE-Solver encompasses two algorithm types, 'scire_v1' and 'scire_v2', which come with three available iteration modes: "multistep", "singlestep"(agile), and "singlestep_fixed". 
+SciRE-Solver encompasses two algorithm types: **scire_v1** and **scire_v2**, which come with three available iteration modes: **multistep**, **singlestep_agile**, and **singlestep_fixed**. 
 
-**SciRE-Solver has achieved a higher 'FID' than the pre-trained models previously achieved, all while accelerating.**
+**SciRE-Solver, while accelerating, has achieved a better 'FID' compared to the previous achievements of pre-trained models.**
+
+
 
 
 
