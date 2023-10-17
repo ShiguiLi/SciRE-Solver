@@ -38,7 +38,7 @@ Samples by Stable-Diffusion with SciRE-Solver and DPM-Solver++, using 50 NFE, an
 <p align="center">
   <img src="./assets/dpm++2m3m_50.png" width="100%">
 </p>
-<p align="center"><strong>DPM++ with 2m (left) and 3m (right).</strong> </p>
+<p align="center"><strong>[DPM-Solver++](https://arxiv.org/abs/2211.01095) with 2m (left) and 3m (right).</strong> </p>
 
 
 Here we provide two versions of the 'scire-solver', and three different types of methods.
