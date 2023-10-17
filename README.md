@@ -9,7 +9,7 @@ This code is an official demo of PyTorch implementation of SciRE-Solver.
 
 [ArXiv](https://doi.org/10.48550/arXiv.2308.07896)
 
-**SciRE-Solver is a category of accelerated sampling algorithms designed for diffusion models. It is founded on the following recursive difference method used to compute derivatives of the score function networks.**
+**The <em>SciRE-Solver</em> is a class of accelerating sampling algorithms specially tailored for diffusion models, requiring no any training. Its design is fundamentally predicated on the following recursive difference method.**
 <p align="center">
   <img src="./assets/Recursive_Difference.jpg" width="100%">
 </p>
