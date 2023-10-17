@@ -26,19 +26,19 @@ SciRE-Solver encompasses two algorithm types: **scire_v1** and **scire_v2**, whi
 # [Stable-Diffusion](https://github.com/Stability-AI/StableDiffusion) 
 The code is now available in the ['sd_scire'](sd_scire/stable-diffusion/ldm/models/diffusion/scire_solver) folder, and we welcome everyone to use the scire-solver on stable-diffusion. Next, we will integrate the code into the stable-diffusion repository.
 
-Samples by Stable-Diffusion with SciRE-Solver and DPM-Solver++ under same setting, using 50 NFE, and text prompt “A beautiful mansion beside a waterfall in the woods, by josef thoma, matte painting, trending on artstation HQ”, and seed 33. 
+Samples by Stable-Diffusion with SciRE-Solver and DPM-Solver++, using 50 NFE, and text prompt “A beautiful mansion beside a waterfall in the woods, by josef thoma, matte painting, trending on artstation HQ”, and seed 33. 
 <p align="center">
   <img src="./assets/scirev12m3m_50.png" width="100%">
 </p>
-<p align="center">**scire_v1 with 2m (left) and 3m (right).** </p>
+<p align="center"><strong>scire_v1 with 2m (left) and 3m (right).</strong> </p>
 <p align="center">
   <img src="./assets/scirev22m3m_50.png" width="100%">
 </p>
-<p align="center">**scire_v2 with 2m (left) and 3m (right).** </p>
+<p align="center"><strong>scire_v2 with 2m (left) and 3m (right).</strong> </p>
 <p align="center">
   <img src="./assets/dpm++2m3m_50.png" width="100%">
 </p>
-<p align="center">**DPM++ with 2m (left) and 3m (right).** </p>
+<p align="center"><strong>DPM++ with 2m (left) and 3m (right).</strong> </p>
 
 
 Here we provide two versions of the 'scire-solver', and three different types of methods.
