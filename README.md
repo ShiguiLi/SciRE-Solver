@@ -43,7 +43,7 @@ Samples by Stable-Diffusion with SciRE-Solver and DPM-Solver++, using 50 NFE, an
 
 Here we provide two versions of the 'scire-solver', and three different types of methods.
 - algorithm_type: 'scire_v1' or 'scire_v2'
-- method: "multistep" or "singlestep"(agile) or "singlestep_fixed".
+- method: "multistep" or "singlestep_agile" or "singlestep_fixed".
 
 - When using a small number of sampling steps, we recommend using "multistep" method as:
   - "scire_v1-2m"
