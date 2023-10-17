@@ -30,15 +30,16 @@ Samples by Stable-Diffusion with SciRE-Solver and DPM-Solver++ under same settin
 <p align="center">
   <img src="./assets/scirev12m3m_50.png" width="100%">
 </p>
-*scire_v1 with 2m (left) and 3m (right)*. 
+<p align="center">**scire_v1 with 2m (left) and 3m (right).** </p>
 <p align="center">
   <img src="./assets/scirev22m3m_50.png" width="100%">
 </p>
-*scire_v2 with 2m (left) and 3m (right)*. 
+<p align="center">**scire_v2 with 2m (left) and 3m (right).** </p>
 <p align="center">
   <img src="./assets/dpm++2m3m_50.png" width="100%">
 </p>
-*DPM++ with 2m (left) and 3m (right)*. 
+<p align="center">**DPM++ with 2m (left) and 3m (right).** </p>
+
 
 Here we provide two versions of the 'scire-solver', and three different types of methods.
 - algorithm_type: 'scire_v1' or 'scire_v2'
