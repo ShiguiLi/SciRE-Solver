@@ -411,9 +411,9 @@ class SciRE_Solver:
         t_T = self.noise_schedule.T if t_start is None else t_start
         assert t_0 > 0 and t_T > 0, "Time range needs to be greater than 0. For discrete-time DMs, it needs to be in [1 / N, 1], where N is the length of betas array"
         if return_intermediate:
-            assert method in ['multistep', 'singlestep', 'singlestep_fixed'], "Cannot use adaptive solver when saving intermediate values"
+            assert method in ['multistep', 'singlestep_agile', 'singlestep_fixed'], "Cannot use adaptive solver when saving intermediate values"
         if self.correcting_xt_fn is not None:
-            assert method in ['multistep', 'singlestep', 'singlestep_fixed'], "Cannot use adaptive solver when correcting_xt_fn is not None"
+            assert method in ['multistep', 'singlestep_agile', 'singlestep_fixed'], "Cannot use adaptive solver when correcting_xt_fn is not None"
         device = x.device
         # Simplify each iteration of SciRE-Solver
         if self.algorithm_type == "scire_v1":
@@ -488,12 +488,12 @@ class SciRE_Solver:
                         elif self.algorithm_type == "scire_v2":
                             model_prev_list[-1] = self.model_fn(self.noise_schedule.marginal_std(t)*x, t)
 
-            elif method in ['singlestep', 'singlestep_fixed']:
+            elif method in ['singlestep_agile', 'singlestep_fixed']:
                 K = steps // order
                 # compute phi_1(m) as described in paper
                 phi = self.noise_schedule.series_phi(1, steps//order)
                 
-                if method == 'singlestep':
+                if method == 'singlestep_agile':
                     timesteps_outer, orders = self.get_orders_and_timesteps_for_singlestep_solver(steps=steps, order=order, skip_type=skip_type, t_T=t_T, t_0=t_0, device=device)
                 elif method == 'singlestep_fixed':
                     orders = [order,] * K
