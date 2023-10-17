@@ -9,11 +9,10 @@ This code is an official demo of PyTorch implementation of SciRE-Solver.
 
 [ArXiv](https://doi.org/10.48550/arXiv.2308.07896)
 
-# SciRE-Solver: a accelerating solver of diffusion ODE with the recursive difference method to calculate the derivative of the score function networks.
+**SciRE-Solver: a accelerating solver of diffusion ODE with the recursive difference method to calculate the derivative of the score function networks.**
 
-<p align="center">
-  <img src="./assets/Recursive_Difference.pdf" width="100%">
-</p>
+<iframe src="./assets/Recursive_Difference.pdf" width="100%" height="500px"></iframe>
+
 
 SciRE-Solver encompasses two algorithm types, 'scire_v1' and 'scire_v2', which come with three available iteration modes: "multistep", "singlestep"(agile), and "singlestep_fixed". 
 
