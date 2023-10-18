@@ -1,5 +1,5 @@
 
-devices="0,1,2"
+devices="0,1"
 # steps="100"
 # multi_steps=("100")
 multi_steps=("20")
