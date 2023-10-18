@@ -81,7 +81,7 @@ Samples by SciRE_V1_3 with singlestep (50 NFE) for this Disney prompt.
 <p align="center">
   <img src="./assets/scirev23s_50_disney.png" width="100%">
 </p>
-<p align="center"><strong>SciRE_v1_3s with 50 NFE.</strong> </p>
+<p align="center"><strong>SciRE_v2_3s with 50 NFE.</strong> </p>
 
 
 
