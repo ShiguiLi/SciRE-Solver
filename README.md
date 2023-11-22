@@ -1,4 +1,5 @@
-# SciRE-Solver: Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference  [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/scire-solver-efficient-sampling-of-diffusion/image-generation-on-cifar-10)](https://paperswithcode.com/sota/image-generation-on-cifar-10?p=scire-solver-efficient-sampling-of-diffusion)  [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/scire-solver-efficient-sampling-of-diffusion/image-generation-on-celeba-64x64)](https://paperswithcode.com/sota/image-generation-on-celeba-64x64?p=scire-solver-efficient-sampling-of-diffusion)
+# SciRE-Solver: Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference  
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/scire-solver-efficient-sampling-of-diffusion/image-generation-on-cifar-10)](https://paperswithcode.com/sota/image-generation-on-cifar-10?p=scire-solver-efficient-sampling-of-diffusion)  [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/scire-solver-efficient-sampling-of-diffusion/image-generation-on-celeba-64x64)](https://paperswithcode.com/sota/image-generation-on-celeba-64x64?p=scire-solver-efficient-sampling-of-diffusion)
 
 
 
