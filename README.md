@@ -26,6 +26,8 @@ SciRE-Solver encompasses two algorithm types: **SciRE_v1** and **SciRE_v2**, whi
 
 
 
+# Test SciRE-Solver on EDM (1.76 FID on CIFAR-10)
+- SciRE_v1-2 (singlestep_fixed) with cpkt ([edm-cifar10-32x32-cond-vp.pkl](https://nvlabs-fi-cdn.nvidia.com/edm/pretrained/edm-cifar10-32x32-cond-vp.pkl)) attian $2.29$ FID with $12$ NFE, $2.16$ FID with $14$ NFE, $1.94$ FID with $20$ NFE, $1.79$ FID with $50$ NFE, $1.76$ FID with $100$ NFE, when $\phi_1(m)=\phi_1(3)$.
 
 
 # [Stable-Diffusion](https://github.com/Stability-AI/StableDiffusion) 
@@ -92,8 +94,7 @@ Samples by SciRE_V2_3 with singlestep (50 NFE) for this Disney prompt.
 
 
 
-# Test SciRE-Solver on EDM (1.76 FID on CIFAR-10)
-- SciRE_v1-2 (singlestep_fixed) with cpkt ([edm-cifar10-32x32-cond-vp.pkl](https://nvlabs-fi-cdn.nvidia.com/edm/pretrained/edm-cifar10-32x32-cond-vp.pkl)) attian $2.29$ FID with $12$ NFE, $2.16$ FID with $14$ NFE, $1.94$ FID with $20$ NFE, $1.79$ FID with $50$ NFE, $1.76$ FID with $100$ NFE, when $\phi_1(m)=\phi_1(3)$.
+
 
 # TODO:
 
