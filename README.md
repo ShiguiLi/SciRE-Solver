@@ -1,4 +1,4 @@
-# SciRE-Solver: Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference
+# SciRE-Solver: Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference  [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/scire-solver-efficient-sampling-of-diffusion/image-generation-on-cifar-10)](https://paperswithcode.com/sota/image-generation-on-cifar-10?p=scire-solver-efficient-sampling-of-diffusion)  [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/scire-solver-efficient-sampling-of-diffusion/image-generation-on-celeba-64x64)](https://paperswithcode.com/sota/image-generation-on-celeba-64x64?p=scire-solver-efficient-sampling-of-diffusion)
 
 
 
@@ -9,9 +9,9 @@ This code is an official demo of PyTorch implementation of SciRE-Solver.
 
 [ArXiv](https://doi.org/10.48550/arXiv.2308.07896)
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/scire-solver-efficient-sampling-of-diffusion/image-generation-on-cifar-10)](https://paperswithcode.com/sota/image-generation-on-cifar-10?p=scire-solver-efficient-sampling-of-diffusion)
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/scire-solver-efficient-sampling-of-diffusion/image-generation-on-celeba-64x64)](https://paperswithcode.com/sota/image-generation-on-celeba-64x64?p=scire-solver-efficient-sampling-of-diffusion)
+
+
 
 **The <em>SciRE-Solver</em> is a class of accelerating sampling algorithms tailored for diffusion models, requiring no training or optimization. Its numerical algorithm design is fundamentally predicated on the following recursive difference method, a novel approach we introduce for evaluating the derivative of the score function networks.**
 <p align="center">
