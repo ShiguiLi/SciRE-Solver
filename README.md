@@ -1,4 +1,4 @@
-# SciRE-Solver: Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference  
+# Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference  
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/scire-solver-efficient-sampling-of-diffusion/image-generation-on-cifar-10)](https://paperswithcode.com/sota/image-generation-on-cifar-10?p=scire-solver-efficient-sampling-of-diffusion)  [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/scire-solver-efficient-sampling-of-diffusion/image-generation-on-celeba-64x64)](https://paperswithcode.com/sota/image-generation-on-celeba-64x64?p=scire-solver-efficient-sampling-of-diffusion)
 
 
@@ -14,7 +14,7 @@ This code is an official demo of PyTorch implementation of SciRE-Solver.
 
 
 
-**The <em>SciRE-Solver</em> is a class of accelerating sampling algorithms tailored for diffusion models, requiring <em>no training and optimization</em>. Its numerical algorithm design is fundamentally predicated on the score-integrand form and the following recursive difference  refinement, a novel  pseudo numerical  approach we introduce for improving the integral of the score function networks.**
+**The <em>SciRE-Solver</em> is a class of accelerating sampling algorithms tailored for diffusion models, requiring <em>no training and optimization</em>. Its numerical algorithm design is fundamentally predicated on the score-integrand form and the following recursive difference  refinement, a novel  numerical  approach we introduce for improving the integral of the score function networks.**
 
 <p align="center">
   <img src="./assets/Recursive_Difference.jpg" width="100%">
