@@ -305,9 +305,8 @@ class SciRE_Solver:
         D1_0 = model_prev_0 - model_prev_1
 
         if self.algorithm_type == "scire_v1":
-            h_0 = NSR_prev_0 - NSR_prev_1
             h = NSR_t - NSR_prev_0
-            r0 =1/2
+            r0 = torch.log(2*(NSR_t - NSR_prev_1)/(NSR_prev_0 - NSR_prev_1))
 
             x_t = (
                     x
@@ -315,8 +314,8 @@ class SciRE_Solver:
                     + (0.5/(r0*phi_step)*h) * D1_0
                 )
         elif self.algorithm_type == "scire_v2":
-            r0 = 1/2
-            h = (1/NSR_t - 1/NSR_prev_0)
+            h = 1/NSR_t - 1/NSR_prev_0
+            r0 = torch.log(2*(1/NSR_t - 1/NSR_prev_1)/(1/NSR_prev_0 - 1/NSR_prev_1))
 
             x_t = (
                     x
