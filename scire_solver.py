@@ -301,26 +301,24 @@ class SciRE_Solver:
         model_prev_1, model_prev_0 = model_prev_list[-2], model_prev_list[-1]
         t_prev_1, t_prev_0 = t_prev_list[-2], t_prev_list[-1]
         NSR_prev_1, NSR_prev_0, NSR_t = ns.marginal_NSR(t_prev_1), ns.marginal_NSR(t_prev_0), ns.marginal_NSR(t)
-    
-        D1_0 = model_prev_0 - model_prev_1
+        r = torch.log(NSR_prev_1/NSR_prev_0)/torch.log(NSR_prev_0/NSR_t)
+        D1_0 = (model_prev_0 - model_prev_1)/r
 
         if self.algorithm_type == "scire_v1":
             h = NSR_t - NSR_prev_0
-            r0 = torch.log(2*(NSR_t - NSR_prev_1)/(NSR_prev_0 - NSR_prev_1))
 
             x_t = (
                     x
                     + h * model_prev_0
-                    + (0.5/(r0*phi_step)*h) * D1_0
+                    + (0.5/phi_step*h) * D1_0
                 )
         elif self.algorithm_type == "scire_v2":
             h = 1/NSR_t - 1/NSR_prev_0
-            r0 = torch.log(2*(1/NSR_t - 1/NSR_prev_1)/(1/NSR_prev_0 - 1/NSR_prev_1))
 
             x_t = (
                     x
                     + h * model_prev_0
-                    + (0.5/(r0*phi_step) * h) * D1_0
+                    + (0.5/phi_step* h) * D1_0
                 )
         else:
             raise ValueError("'algorithm_type' must be 'scire_v1' or 'scire_v2', got {}".format(algorithm_type))
