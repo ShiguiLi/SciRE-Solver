@@ -301,7 +301,7 @@ class SciRE_Solver:
         model_prev_1, model_prev_0 = model_prev_list[-2], model_prev_list[-1]
         t_prev_1, t_prev_0 = t_prev_list[-2], t_prev_list[-1]
         NSR_prev_1, NSR_prev_0, NSR_t = ns.marginal_NSR(t_prev_1), ns.marginal_NSR(t_prev_0), ns.marginal_NSR(t)
-        r = torch.log(NSR_prev_1/NSR_prev_0)/torch.log(NSR_prev_0/NSR_t)
+        r = torch.log(NSR_prev_1/NSR_prev_0)/torch.log(NSR_prev_0/NSR_t) ## r is equel to the "r" used in DPM-Solver.
         D1_0 = (model_prev_0 - model_prev_1)/r
 
         if self.algorithm_type == "scire_v1":
