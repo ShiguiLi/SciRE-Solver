@@ -301,7 +301,8 @@ class SciRE_Solver:
         model_prev_1, model_prev_0 = model_prev_list[-2], model_prev_list[-1]
         t_prev_1, t_prev_0 = t_prev_list[-2], t_prev_list[-1]
         NSR_prev_1, NSR_prev_0, NSR_t = ns.marginal_NSR(t_prev_1), ns.marginal_NSR(t_prev_0), ns.marginal_NSR(t)
-        r = torch.log(NSR_prev_1/NSR_prev_0)/torch.log(NSR_prev_0/NSR_t) ## r is equel to the "r" used in DPM-Solver.
+        r1 = torch.log(NSR_prev_1/NSR_prev_0)/torch.log(NSR_prev_0/NSR_t) ## r is equel to the "r" used in DPM-Solver.
+        r = math.pow(r1,0.25)
         D1_0 = (model_prev_0 - model_prev_1)/r
 
         if self.algorithm_type == "scire_v1":
@@ -421,7 +422,6 @@ class SciRE_Solver:
         elif self.algorithm_type == "scire_v2": 
             x = 1/self.noise_schedule.marginal_std(torch.tensor(t_T).to(device)) * x
             
-        intermediates = []
         with torch.no_grad():
             if method == 'multistep':
                 assert steps >= order
@@ -499,9 +499,12 @@ class SciRE_Solver:
                 for step, order in enumerate(orders):
                     s, t = timesteps_outer[step], timesteps_outer[step + 1]
                     if step < K//2: 
-                        phi_step = phi[2*step+1]
-                    else:
-                        phi_step = phi[2*(K-step-1)]
+                        phi_step = phi[2*step]
+                    else: 
+                        if step == K//2:
+                            phi_step = phi[-1]
+                        else: 
+                            phi_step = phi[2*(K - step) - 1] 
                     if self.noise_schedule.schedule == 'discrete': 
                         timesteps_inner = self.get_time_steps(skip_type=skip_type, t_T=s.item(), t_0=t.item(), N=order, device=device)
                         NSR_inner = self.noise_schedule.marginal_NSR(timesteps_inner)
