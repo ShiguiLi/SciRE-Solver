@@ -422,11 +422,12 @@ class SciRE_Solver:
         elif self.algorithm_type == "scire_v2": 
             x = 1/self.noise_schedule.marginal_std(torch.tensor(t_T).to(device)) * x
             
+        intermediates = []
         with torch.no_grad():
             if method == 'multistep':
                 assert steps >= order
                 # compute phi_1(m) as described in paper
-                phi = self.noise_schedule.series_phi(1, steps)
+                phi = self.noise_schedule.series_phi(1, steps+1)
                 timesteps = self.get_time_steps(skip_type=skip_type, t_T=t_T, t_0=t_0, N=steps, device=device)
                 assert timesteps.shape[0] - 1 == steps
                 # Init the initial values.
@@ -445,7 +446,7 @@ class SciRE_Solver:
                     intermediates.append(x)
                 # Init the first `order` values by lower order multistep SciRE-Solver.
                 for step in range(1, order):
-                    phi_step = phi[-step]
+                    phi_step = phi[2*step-1]
                     t = timesteps[step]
                     x = self.multistep_scire_solver_update(x, model_prev_list, t_prev_list, t, step, solver_type=solver_type, phi_step = phi_step)
                     if self.correcting_xt_fn is not None:
@@ -458,18 +459,21 @@ class SciRE_Solver:
                     elif self.algorithm_type == "scire_v2":
                         model_prev_list.append(self.model_fn(self.noise_schedule.marginal_std(t)*x, t))
                 # Compute the remaining values by `order`-th order multistep SciRE-Solver.
-                K = (steps + 1 - order)//2
+                
                 for step in range(order, steps + 1):
                     t = timesteps[step]
-                    # We only use lower order for steps < 10
-                    if lower_order_final and steps < 10:
+                    if step < steps//2: 
+                        phi_step = phi[2*(step-order)+1]
+                    else:
+                        if step ==steps//2:
+                            phi_step = phi[-1]
+                        else: 
+                            phi_step = phi[2*(steps - step)] 
+                    
+                    if lower_order_final:
                         step_order = min(order, steps + 1 - step)
                     else:
                         step_order = order
-                    if step < K+order: 
-                        phi_step = phi[2*(step-order)+1]
-                    else:
-                        phi_step = phi[2 *(order + 2*K- step)]
                     x = self.multistep_scire_solver_update(x, model_prev_list, t_prev_list, t, step_order, solver_type=solver_type, phi_step = phi_step)
                     if self.correcting_xt_fn is not None:
                         x = self.correcting_xt_fn(x, t, step)
@@ -801,7 +805,8 @@ def model_wrapper(
             cond_grad = cond_grad_fn(x, t_input)
             sigma_t = noise_schedule.marginal_std(t_continuous)
             noise = noise_pred_fn(x, t_continuous)
-            return noise - guidance_scale * sigma_t * cond_grad
+            # return noise - guidance_scale * sigma_t * cond_grad
+            return noise - guidance_scale * expand_dims(sigma_t, x.dim()) * cond_grad 
         elif guidance_type == "classifier-free":
             if guidance_scale == 1. or unconditional_condition is None:
                 return noise_pred_fn(x, t_continuous, cond=condition)
