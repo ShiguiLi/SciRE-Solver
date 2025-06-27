@@ -103,7 +103,7 @@ Samples by Stable-Diffusion with SciRE-Solver and DPM-Solver++, using 50 NFE, an
 # TODO:
 
 # Update (2025.6.27)
-*Our approach is both simple and effective. More importantly, beyond its simplicity, it is a fundamentally original method that requires no post-optimization or re-optimization using pre-generated solutions or trajectories. This work was previously rejected as some reviewers insisted on unfair comparisons with many sampling algorithms that depend on post-optimization or re-optimization using pre-generated trajectories. We remain resilient. *
+**Our approach is both simple and effective. More importantly, beyond its simplicity, it is a fundamentally original method that requires no post-optimization or re-optimization using pre-generated solutions or trajectories. This work was previously rejected as some reviewers insisted on unfair comparisons with many sampling algorithms that depend on post-optimization or re-optimization using pre-generated trajectories. We remain resilient. **
 
 # Acknowledgement
 
