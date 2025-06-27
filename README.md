@@ -11,7 +11,9 @@ This code is an official demo of PyTorch implementation of SciRE-Solver.
 
 *The <em>SciRE-Solver</em> is a class of accelerating sampling algorithms tailored for diffusion models, requiring <em>no training and optimization</em>. Its numerical algorithm design is fundamentally predicated on the score-integrand form and the following recursive difference  refinement, a novel  numerical  approach we introduce for improving the integral of the score function networks.*
 
-**(Update 2025.6.27) 🔧 Existing fast samplers like DPM-Solver rely on signal-to-noise ratio (SNR, i.e., $\frac{\alpha_t^2}{\sigma_t^2}$ ) transformations, yet suffer from numerical instability near the final denoising steps due to SNR divergence (as $\sigma_t \to 0$). To address this limitation, we propose a novel reformulation based on the Noise-to-Signal Ratio (NSR, i.e., $\frac{\sigma_t^2}{\alpha_t^2}$ ), which naturally vanishes as time approaches zero, offering improved numerical conditioning.**
+**(Update 2025.6.27) ❓ Existing fast samplers like DPM-Solver rely on signal-to-noise ratio (SNR, i.e., $\frac{\alpha_t^2}{\sigma_t^2}$ ) transformations, yet suffer from numerical instability near the final denoising steps due to SNR divergence (as $\sigma_t \to 0$).**
+
+**🔧 Our Solution: We propose a novel reformulation based on the Noise-to-Signal Ratio (NSR, i.e., $\frac{\sigma_t^2}{\alpha_t^2}$ ), which naturally vanishes as time approaches zero, offering improved numerical conditioning.**
 
 <p align="center">
   <img src="./assets/Recursive_Difference.jpg" width="100%">
@@ -22,7 +24,7 @@ SciRE-Solver encompasses two algorithm types: **SciRE_v1** and **SciRE_v2**, whi
 **🎯 SciRE-Solver, while accelerating, has achieved a better 'FID' compared to the previous achievements of pre-trained models.**
 
 ## 🧪 Test SciRE-Solver on EDM (1.76 FID on CIFAR-10)
-- SciRE_v1-2 (singlestep_fixed) with cpkt ([edm-cifar10-32x32-cond-vp.pkl](https://nvlabs-fi-cdn.nvidia.com/edm/pretrained/edm-cifar10-32x32-cond-vp.pkl)) attian $2.29$ FID with $12$ NFE, $2.16$ FID with $14$ NFE, $1.94$ FID with $20$ NFE, $1.79$ FID with $50$ NFE, $1.76$ FID with $100$ NFE, when $\phi_1(m)=\phi_1(3)$.
+- SciRE_v1-2 (singlestep_fixed) with cpkt ([edm-cifar10-32x32-cond-vp.pkl](https://nvlabs-fi-cdn.nvidia.com/edm/pretrained/edm-cifar10-32x32-cond-vp.pkl)) attain $2.29$ FID with $12$ NFE, $2.16$ FID with $14$ NFE, $1.94$ FID with $20$ NFE, $1.79$ FID with $50$ NFE, $1.76$ FID with $100$ NFE, when $\phi_1(m)=\phi_1(3)$.
 
 ## 🎨 [Stable-Diffusion](https://github.com/Stability-AI/StableDiffusion) 
 The code is now available in the ['sd_scire'](sd_scire/stable-diffusion/ldm/models/diffusion/scire_solver) folder, and we welcome everyone to use the SciRE-Solver on stable-diffusion. Next, we will integrate the code into the stable-diffusion repository.
@@ -85,7 +87,7 @@ Samples by Stable-Diffusion with SciRE-Solver and DPM-Solver++, using 50 NFE, an
 ## 📢 Update (2025.6.27)
 **💪 Our approach is both simple and effective. More importantly, beyond its simplicity, it is a fundamentally original method that requires no post-optimization or re-optimization using pre-generated solutions or trajectories.**
 
-**🔄 This work was initially met with challenges during the review process (unfair, 😭), where reviewers requested comparisons with methods that depend on post-optimization or re-optimization using pre-generated trajectories. We believe our approach offers a fundamentally different and valuable contribution to the field. 💪💪**
+**🔄 This work was initially met with main challenge during the review process (😭), where reviewers requested comparisons with methods that depend on post-optimization or re-optimization using pre-generated trajectories. We believe our approach offers a fundamentally different and valuable contribution to the field. 💪💪**
 
 **🌟 We remain resilient. (😭, but 💪💪)  We welcome researchers to try SciRE-Solver and look forward to your feedback and contributions, especially as it is explicitly built upon the stable NSR trajectory as $\sigma_t \to 0$.**
 
