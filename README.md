@@ -1,4 +1,4 @@
-# Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference  
+# SciRE-Solver: Accelerating Diffusion Models Sampling  by Score-integrand Solver with Recursive Difference  
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/scire-solver-efficient-sampling-of-diffusion/image-generation-on-cifar-10)](https://paperswithcode.com/sota/image-generation-on-cifar-10?p=scire-solver-efficient-sampling-of-diffusion)  [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/scire-solver-efficient-sampling-of-diffusion/image-generation-on-celeba-64x64)](https://paperswithcode.com/sota/image-generation-on-celeba-64x64?p=scire-solver-efficient-sampling-of-diffusion)
 
 
@@ -103,7 +103,8 @@ Samples by Stable-Diffusion with SciRE-Solver and DPM-Solver++, using 50 NFE, an
 # TODO:
 
 # Update (2025.6.27)
-**Our approach is both simple and effective. More importantly, beyond its simplicity, it is a fundamentally original method that requires no post-optimization or re-optimization using pre-generated solutions or trajectories. This work was previously rejected as some reviewers insisted on unfair comparisons with many sampling algorithms that depend on post-optimization or re-optimization using pre-generated trajectories. We remain resilient.**
+**Our approach is both simple and effective. More importantly, beyond its simplicity, it is a fundamentally original method that requires no post-optimization or re-optimization using pre-generated solutions or trajectories. 
+This work was initially met with challenges during the review process, where reviewers requested comparisons with methods that depend on post-optimization or re-optimization using pre-generated trajectories. We believe our approach offers a fundamentally different and valuable contribution to the field. We remain resilient.**
 
 # Acknowledgement
 
