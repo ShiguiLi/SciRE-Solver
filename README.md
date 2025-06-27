@@ -23,8 +23,20 @@ SciRE-Solver encompasses two algorithm types: **SciRE_v1** and **SciRE_v2**, whi
 
 **🎯 SciRE-Solver, while accelerating, has achieved a better 'FID' compared to the previous achievements of pre-trained models.**
 
-## 🧪 Test SciRE-Solver on EDM (1.76 FID on CIFAR-10)
-- SciRE_v1-2 (singlestep_fixed) with cpkt ([edm-cifar10-32x32-cond-vp.pkl](https://nvlabs-fi-cdn.nvidia.com/edm/pretrained/edm-cifar10-32x32-cond-vp.pkl)) attain $2.29$ FID with $12$ NFE, $2.16$ FID with $14$ NFE, $1.94$ FID with $20$ NFE, $1.79$ FID with $50$ NFE, $1.76$ FID with $100$ NFE, when $\phi_1(m)=\phi_1(3)$.
+## 🧪 Benchmark Results
+
+### EDM on CIFAR-10 (Achieving 1.76 FID)
+SciRE_v1-2 (singlestep_fixed) with checkpoint ([edm-cifar10-32x32-cond-vp.pkl](https://nvlabs-fi-cdn.nvidia.com/edm/pretrained/edm-cifar10-32x32-cond-vp.pkl)):
+
+| NFE | FID Score |
+|-----|-----------|
+| 12  | 2.29      |
+| 14  | 2.16      |
+| 20  | 1.94      |
+| 50  | 1.79      |
+| 100 | 1.76      |
+
+*Results obtained with $\phi_1(m)=\phi_1(3)$*
 
 ## 🎨 [Stable-Diffusion](https://github.com/Stability-AI/StableDiffusion) 
 The code is now available in the ['sd_scire'](sd_scire/stable-diffusion/ldm/models/diffusion/scire_solver) folder, and we welcome everyone to use the SciRE-Solver on stable-diffusion. Next, we will integrate the code into the stable-diffusion repository.
