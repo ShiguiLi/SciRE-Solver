@@ -16,6 +16,10 @@ This code is an official demo of PyTorch implementation of SciRE-Solver.
 
 *The <em>SciRE-Solver</em> is a class of accelerating sampling algorithms tailored for diffusion models, requiring <em>no training and optimization</em>. Its numerical algorithm design is fundamentally predicated on the score-integrand form and the following recursive difference  refinement, a novel  numerical  approach we introduce for improving the integral of the score function networks.*
 
+*The SciRE-Solver is a class of accelerating sampling algorithms tailored for diffusion models, requiring no training and optimization. Its numerical algorithm design is fundamentally predicated on the score-integrand form and the following recursive difference refinement, a novel numerical approach we introduce for improving the integral of the score function networks.*
+
+**(Update 2025.6.27) Existing fast samplers like DPM-Solver rely on signal-to-noise ratio (SNR) transformations, yet suffer from numerical instability near the final denoising steps due to SNR divergence (as $\sigma_t \to 0$). To address this limitation, we propose a novel reformulation based on the Noise-to-Signal Ratio (NSR), which naturally vanishes as time approaches zero, offering improved numerical conditioning.**
+
 <p align="center">
   <img src="./assets/Recursive_Difference.jpg" width="100%">
 </p>
@@ -104,7 +108,10 @@ Samples by Stable-Diffusion with SciRE-Solver and DPM-Solver++, using 50 NFE, an
 
 # Update (2025.6.27)
 **Our approach is both simple and effective. More importantly, beyond its simplicity, it is a fundamentally original method that requires no post-optimization or re-optimization using pre-generated solutions or trajectories. 
-This work was initially met with challenges during the review process, where reviewers requested comparisons with methods that depend on post-optimization or re-optimization using pre-generated trajectories. We believe our approach offers a fundamentally different and valuable contribution to the field. We remain resilient.**
+This work was initially met with challenges during the review process, where reviewers requested comparisons with methods that depend on post-optimization or re-optimization using pre-generated trajectories. We believe our approach offers a fundamentally different and valuable contribution to the field.**
+
+**We remain resilient. We welcome the community to try SciRE-Solver and look forward to your feedback and contributions.**
+ 
 
 # Acknowledgement
 
