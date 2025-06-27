@@ -87,7 +87,7 @@ Samples by Stable-Diffusion with SciRE-Solver and DPM-Solver++, using 50 NFE, an
 
 **🔄 This work was initially met with challenges during the review process, where reviewers requested comparisons with methods that depend on post-optimization or re-optimization using pre-generated trajectories. We believe our approach offers a fundamentally different and valuable contribution to the field.**
 
-**🌟 We remain resilient. We welcome the community to try SciRE-Solver and look forward to your feedback and contributions, especially regarding its along with NSR trajectory.**
+**🌟 We remain resilient. We welcome the community to try SciRE-Solver and look forward to your feedback and contributions, especially as it is explicitly built upon the stable NSR trajectory as $\sigma_t \to 0$.**
 
 ## 🙏 Acknowledgement
 
