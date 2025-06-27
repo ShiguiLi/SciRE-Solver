@@ -14,7 +14,7 @@ This code is an official demo of PyTorch implementation of SciRE-Solver.
 
 
 
-**The <em>SciRE-Solver</em> is a class of accelerating sampling algorithms tailored for diffusion models, requiring <em>no training and optimization</em>. Its numerical algorithm design is fundamentally predicated on the score-integrand form and the following recursive difference  refinement, a novel  numerical  approach we introduce for improving the integral of the score function networks.**
+*The <em>SciRE-Solver</em> is a class of accelerating sampling algorithms tailored for diffusion models, requiring <em>no training and optimization</em>. Its numerical algorithm design is fundamentally predicated on the score-integrand form and the following recursive difference  refinement, a novel  numerical  approach we introduce for improving the integral of the score function networks.*
 
 <p align="center">
   <img src="./assets/Recursive_Difference.jpg" width="100%">
@@ -103,7 +103,7 @@ Samples by Stable-Diffusion with SciRE-Solver and DPM-Solver++, using 50 NFE, an
 # TODO:
 
 # Update (2025.6.27)
-**Our approach is both simple and effective. More importantly, beyond its simplicity, it is a fundamentally original method that requires no post-optimization or re-optimization using pre-generated solutions or trajectories. This work was previously rejected as some reviewers insisted on unfair comparisons with many sampling algorithms that depend on post-optimization or re-optimization using pre-generated trajectories. We remain resilient. **
+**Our approach is both simple and effective. More importantly, beyond its simplicity, it is a fundamentally original method that requires no post-optimization or re-optimization using pre-generated solutions or trajectories. This work was previously rejected as some reviewers insisted on unfair comparisons with many sampling algorithms that depend on post-optimization or re-optimization using pre-generated trajectories. We remain resilient.**
 
 # Acknowledgement
 
