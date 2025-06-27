@@ -94,7 +94,7 @@ Samples by Stable-Diffusion with SciRE-Solver and DPM-Solver++, using 50 NFE, an
 </p>
 <p align="center"><strong>DPM-Solver++</a> with 2m (left) and 3m (right).</strong></p>
 
-## 📋 TODO:
+## 📋 TODO:~
 
 ## 📢 Recent Updates (2025.6.27)
 **Our approach is both simple and effective 💪. More importantly, beyond its simplicity, it is a fundamentally original method that requires no post-optimization or re-optimization using pre-generated solutions or trajectories.**
